@@ -28,7 +28,7 @@ See https://nebrios.com/blog/web-hooks-nebri for a detailed example on how to se
 - receipt_events: for use with receipt events
 - transfer_events: for use with transfer events
 
-<strong>NOTE</strong>: if an endpoint is used for webhooks with a different event type, the webhook will fail and no object will be created.
+<strong>NOTE</strong>: if an endpoint is used for webhooks with a different event type, the webhook will fail and no object will be created. All endpoints check to see if an object already exists with the sent event id. If one already exists, the webhook is ignored.
 
 <h2>Models</h2>
 Models are named after events.
