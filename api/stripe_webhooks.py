@@ -12,27 +12,71 @@ def all_events(request):
         event_data = request.BODY
     event_type = event_data['type'].split('.')[0]
     if event_type == 'account':
-        event = Account()
+        try:
+            event = Account.get(stripe_id=event_data['id'])
+            return {}
+        except:
+            event = Account()
     elif event_type == 'balance':
-        event = Balance()
+        try:
+            event = Balance.get(stripe_id=event_data['id'])
+            return {}
+        except:
+            event = Balance()
     elif event_type == 'bitcoin':
-        event = Bitcoin()
+        try:
+            event = Bitcoin.get(stripe_id=event_data['id'])
+            return {}
+        except:
+            event = Bitcoin()
     elif event_type == 'charge':
-        event = Charge()
+        try:
+            event = Charge.get(stripe_id=event_data['id'])
+            return {}
+        except:
+            event = Charge()
     elif event_type == 'coupon':
-        event = Coupon()
+        try:
+            event = Coupon.get(stripe_id=event_data['id'])
+            return {}
+        except:
+            event = Coupon()
     elif event_type == 'customer':
-        event = Customer()
+        try:
+            event = Customer.get(stripe_id=event_data['id'])
+            return {}
+        except:
+            event = Customer()
     elif event_type == 'invoice':
-        event = Invoice()
+        try:
+            event = Invoice.get(stripe_id=event_data['id'])
+            return {}
+        except:
+            event = Invoice()
     elif event_type == 'invoiceitem':
-        event = InvoiceItem()
+        try:
+            event = InvoiceItem.get(stripe_id=event_data['id'])
+            return {}
+        except:
+            event = InvoiceItem()
     elif event_type == 'plan':
-        event = Plan()
+        try:
+            event = Plan.get(stripe_id=event_data['id'])
+            return {}
+        except:
+            event = Plan()
     elif event_type == 'recipient':
-        event = Recipient()
+        try:
+            event = Recipient.get(stripe_id=event_data['id'])
+            return {}
+        except:
+            event = Recipient()
     elif event_type == 'transfer':
-        event = Transfer()
+        try:
+            event = Transfer.get(stripe_id=event_data['id'])
+            return {}
+        except:
+            event = Transfer()
     else:
         return HttpResponseBadRequest
 
@@ -53,14 +97,18 @@ def account_events(request):
     event_type = event_data['type'].split('.')[0]
     if event_type != 'account':
         return HttpResponseBadRequest
-    event = Account(
-        event_type=event_data['type'].split('.')[1]
-        stripe_id=event_data['id']
-        date_received=datetime.now()
-        raw_data=event_data
-    )
-    event.save()
-    return {}
+    try:
+        event = Account.get(stripe_id=event_data['id'])
+        return {}
+    except:
+        event = Account(
+            event_type=event_data['type'].split('.')[1]
+            stripe_id=event_data['id']
+            date_received=datetime.now()
+            raw_data=event_data
+        )
+        event.save()
+        return {}
 
 
 @token_required(realm='stripe')
@@ -72,14 +120,18 @@ def balance_events(request):
     event_type = event_data['type'].split('.')[0]
     if event_type != 'balance':
         return HttpResponseBadRequest
-    event = Balance(
-        event_type=event_data['type'].split('.')[1]
-        stripe_id=event_data['id']
-        date_received=datetime.now()
-        raw_data=event_data
-    )
-    event.save()
-    return {}
+    try:
+        event = Balance.get(stripe_id=event_data['id']
+        return {}
+    except:
+        event = Balance(
+            event_type=event_data['type'].split('.')[1]
+            stripe_id=event_data['id']
+            date_received=datetime.now()
+            raw_data=event_data
+        )
+        event.save()
+        return {}
 
 
 @token_required(realm='stripe')
@@ -91,14 +143,18 @@ def bitcoin_events(request):
     event_type = event_data['type'].split('.')[0]
     if event_type != 'bitcoin':
         return HttpResponseBadRequest
-    event = Bitcoin(
-        event_type=event_data['type'].split('.')[1]
-        stripe_id=event_data['id']
-        date_received=datetime.now()
-        raw_data=event_data
-    )
-    event.save()
-    return {}
+    try:
+        event = Bitcoin.get(stripe_id=event_data['id']
+        return {}
+    except:
+        event = Bitcoin(
+            event_type=event_data['type'].split('.')[1]
+            stripe_id=event_data['id']
+            date_received=datetime.now()
+            raw_data=event_data
+        )
+        event.save()
+        return {}
 
 
 @token_required(realm='stripe')
@@ -110,14 +166,18 @@ def charge_events(request):
     event_type = event_data['type'].split('.')[0]
     if event_type != 'charge':
         return HttpResponseBadRequest
-    event = Charge(
-        event_type=event_data['type'].split('.')[1]
-        stripe_id=event_data['id']
-        date_received=datetime.now()
-        raw_data=event_data
-    )
-    event.save()
-    return {}
+    try:
+        event = Charge.get(stripe_id=event_data['id']
+        return {}
+    except:
+        event = Charge(
+            event_type=event_data['type'].split('.')[1]
+            stripe_id=event_data['id']
+            date_received=datetime.now()
+            raw_data=event_data
+        )
+        event.save()
+        return {}
 
 
 @token_required(realm='stripe')
@@ -129,14 +189,18 @@ def coupon_events(request):
     event_type = event_data['type'].split('.')[0]
     if event_type != 'coupon':
         return HttpResponseBadRequest
-    event = Coupon(
-        event_type=event_data['type'].split('.')[1]
-        stripe_id=event_data['id']
-        date_received=datetime.now()
-        raw_data=event_data
-    )
-    event.save()
-    return {}
+    try:
+        event = Coupon.get(stripe_id=event_data['id']
+        return {}
+    except:
+        event = Coupon(
+            event_type=event_data['type'].split('.')[1]
+            stripe_id=event_data['id']
+            date_received=datetime.now()
+            raw_data=event_data
+        )
+        event.save()
+        return {}
 
 
 @token_required(realm='stripe')
@@ -148,14 +212,18 @@ def customer_events(request):
     event_type = event_data['type'].split('.')[0]
     if event_type != 'customer':
         return HttpResponseBadRequest
-    event = Customer(
-        event_type=event_data['type'].split('.')[1]
-        stripe_id=event_data['id']
-        date_received=datetime.now()
-        raw_data=event_data
-    )
-    event.save()
-    return {}
+    try:
+        event = Customer.get(stripe_id=event_data['id']
+        return {}
+    except:
+        event = Customer(
+            event_type=event_data['type'].split('.')[1]
+            stripe_id=event_data['id']
+            date_received=datetime.now()
+            raw_data=event_data
+        )
+        event.save()
+        return {}
 
 
 @token_required(realm='stripe')
@@ -167,14 +235,18 @@ def invoice_events(request):
     event_type = event_data['type'].split('.')[0]
     if event_type != 'invoice':
         return HttpResponseBadRequest
-    event = Invoice(
-        event_type=event_data['type'].split('.')[1]
-        stripe_id=event_data['id']
-        date_received=datetime.now()
-        raw_data=event_data
-    )
-    event.save()
-    return {}
+    try:
+        event = Invoice.get(stripe_id=event_data['id']
+        return {}
+    except:
+        event = Invoice(
+            event_type=event_data['type'].split('.')[1]
+            stripe_id=event_data['id']
+            date_received=datetime.now()
+            raw_data=event_data
+        )
+        event.save()
+        return {}
 
 
 @token_required(realm='stripe')
@@ -186,14 +258,18 @@ def invoiceitem_events(request):
     event_type = event_data['type'].split('.')[0]
     if event_type != 'invoiceitem':
         return HttpResponseBadRequest
-    event = InvoiceItem(
-        event_type=event_data['type'].split('.')[1]
-        stripe_id=event_data['id']
-        date_received=datetime.now()
-        raw_data=event_data
-    )
-    event.save()
-    return {}
+    try:
+        event = InvoiceItem.get(stripe_id=event_data['id']
+        return {}
+    except:
+        event = InvoiceItem(
+            event_type=event_data['type'].split('.')[1]
+            stripe_id=event_data['id']
+            date_received=datetime.now()
+            raw_data=event_data
+        )
+        event.save()
+        return {}
 
 
 @token_required(realm='stripe')
@@ -205,14 +281,18 @@ def plan_events(request):
     event_type = event_data['type'].split('.')[0]
     if event_type != 'plan':
         return HttpResponseBadRequest
-    event = Plan(
-        event_type=event_data['type'].split('.')[1]
-        stripe_id=event_data['id']
-        date_received=datetime.now()
-        raw_data=event_data
-    )
-    event.save()
-    return {}
+    try:
+        event = Plan.get(stripe_id=event_data['id']
+        return {}
+    except:
+        event = Plan(
+            event_type=event_data['type'].split('.')[1]
+            stripe_id=event_data['id']
+            date_received=datetime.now()
+            raw_data=event_data
+        )
+        event.save()
+        return {}
 
 
 @token_required(realm='stripe')
@@ -224,14 +304,18 @@ def receipt_events(request):
     event_type = event_data['type'].split('.')[0]
     if event_type != 'receipt':
         return HttpResponseBadRequest
-    event = Receipt(
-        event_type=event_data['type'].split('.')[1]
-        stripe_id=event_data['id']
-        date_received=datetime.now()
-        raw_data=event_data
-    )
-    event.save()
-    return {}
+    try:
+        event = Receipt.get(stripe_id=event_data['id']
+        return {}
+    except:
+        event = Receipt(
+            event_type=event_data['type'].split('.')[1]
+            stripe_id=event_data['id']
+            date_received=datetime.now()
+            raw_data=event_data
+        )
+        event.save()
+        return {}
 
 
 @token_required(realm='stripe')
@@ -243,11 +327,15 @@ def transfer_events(request):
     event_type = event_data['type'].split('.')[0]
     if event_type != 'transfer':
         return HttpResponseBadRequest
-    event = Transfer(
-        event_type=event_data['type'].split('.')[1]
-        stripe_id=event_data['id']
-        date_received=datetime.now()
-        raw_data=event_data
-    )
-    event.save()
-    return {}
+    try:
+        event = Transfer.get(stripe_id=event_data['id']
+        return {}
+    except:
+        event = Transfer(
+            event_type=event_data['type'].split('.')[1]
+            stripe_id=event_data['id']
+            date_received=datetime.now()
+            raw_data=event_data
+        )
+        event.save()
+        return {}
