@@ -9,7 +9,7 @@ This app requires very little in terms of setup. Please ensure that all files ar
 - `api/stripe_webhooks.py` should be copied to /api
 
 <h2>Requirements</h2>
-This app requires the use of https://github.com/briem-bixly/nebrios-authentication.
+This app requires the use of https://github.com/nebrie/nebrios-authentication.
 
 <h2>Usage</h2>
 See https://nebrios.com/blog/web-hooks-nebri for a detailed example on how to set up webhooks with Nebri and Stripe.
